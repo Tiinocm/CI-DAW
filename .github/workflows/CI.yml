@@ -1,33 +1,21 @@
-name: PHP Composer
+name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+    branches: [ main ]
 
 jobs:
-  build:
-
+  build-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Run a on-line script
-      run: echo Probando CI!
-
-    - name: PHPUnit Test
-      uses: php-actions/phpunit@v9
-      with:
-        command: calculadoraTest.php
-      
-
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    # - name: Run test suite
-    #   run: composer run-script test
+      - uses: actions/checkout@v2
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v2
+        env:
+          TEST_NAME: dniTest
+        with:
+          configuration: test/phpunit.xml
+          args: --coverage-text
