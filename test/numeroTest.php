@@ -10,7 +10,7 @@ class numeroTest extends TestCase {
         $objeto = new Numero(100, 'positivo');
         $this->assertEquals(99, $objeto->decremento());
 
-    }
+    }/* preuba */
 
     public function testDecremento2() {
        
